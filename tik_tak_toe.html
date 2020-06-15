@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tíc tác tâu </title>
+    <style>
+        #but {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #row {
+            width: 30px;
+            height: 15px;
+        }
+
+        #col {
+            width: 30px;
+            height: 15px;
+        }
+        table{
+            cellspacing: 3px;
+            cell-padding: 1px;
+            border: 1px;
+        }
+        #play{
+            margin: 5px;
+            width: 90px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="row"> Row
+<input type="text" id="col"> Col<br>
+<button id="play" onclick="playgame();">PlayGame</button><br>
+<!--<input type="radio" name="men">X-->
+<!--<input type="radio" name="men">O-->
+<div id="main"></div>
+<script>
+    let str;
+    function drawBoardGame(rows, cols) {
+        str = "<table >";
+        for (let i = 0; i < rows; i++) {
+            str += "<tr>";
+            for (let j = 0; j < cols; j++) {
+                str += "<td>";
+                str += "<button id ='but' onclick='clickturn(this);'></button>";
+                str += "</td>";
+            }
+            str += "</tr>";
+        }
+        str += "</table>";
+        return str;
+    }
+
+    function playgame() {
+        let rows = document.getElementById("row").value;
+        let cols = document.getElementById("col").value;
+        document.getElementById("main").innerHTML = drawBoardGame(rows, cols);
+    }
+
+    let turn =1;
+    function clickturn(td) {
+        if (td.innerHTML === ''){
+            if (turn === 1 ){
+                td.innerHTML = "<b>x";
+                turn = 2;
+            } else {
+                td.innerHTML = "o";
+                turn = 1;
+            }
+        }
+    }
+    drawBoardGame();
+    playgame();
+</script>
+</body>
+</html>
